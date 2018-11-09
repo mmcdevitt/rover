@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -18,4 +23,13 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+header {
+  padding: 15px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.content {
+  padding: 15px;
 }

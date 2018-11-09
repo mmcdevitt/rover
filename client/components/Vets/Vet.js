@@ -10,9 +10,9 @@ class Vet extends React.Component {
     
     return (
       <div>
-        { vet.firstName }
+        { vet.firstName } { vet.lastName }
         <div>
-          <img src={vet.imageUrl} />
+          <img src={vet.imageUrl} height="250" />
         </div>
       </div>
     );

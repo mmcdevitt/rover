@@ -4,6 +4,8 @@ import Vets from './components/Vets/Vets'
 import ProfilePage from './components/Vets/Profile'
 import BtnGroup from './components/UI/BtnGroup';
 import Layout from './components/Layout/Layout';
+import Header from './components/UI/Header'
+import MatchList from './components/Matches/MatchList'
 
 class App extends React.Component {
   constructor () {
@@ -12,9 +14,10 @@ class App extends React.Component {
     this.state = {
       vets: [],
       currentVet: {},
-      accepted: [],
+      matched: [],
       rejected: [],
-      viewProfile: false
+      viewProfile: false,
+      viewMatches: false,
     }
   }
 
@@ -44,7 +47,7 @@ class App extends React.Component {
     })
 
     if (action === 'accept') {
-      this.setState({accepted: [...this.state.accepted, this.state.currentVet]})
+      this.setState({matched: [...this.state.matched, this.state.currentVet]})
     } else if (action === 'reject') {
       this.setState({rejected: [...this.state.rejected, this.state.currentVet]})
     }
@@ -56,18 +59,33 @@ class App extends React.Component {
     })
   }
 
+  toggleViewMatches = () => {
+    this.setState({
+      viewMatches: !this.state.viewMatches
+    })
+  }
+
   render () {
     const { 
-      vets, 
       currentVet, 
-      viewProfile 
+      viewProfile,
+      viewMatches,
+      matched,
     } = this.state;
 
     return (
       <Layout>
-        <Vets currentVet={currentVet} />
-        <BtnGroup swipe={this.swipe} toggleProfilePage={this.toggleProfilePage} />
-        {viewProfile && <ProfilePage currentVet={currentVet} />}
+        <Header toggleViewMatches={this.toggleViewMatches} />
+        <div className="content">
+        { viewMatches ? 
+          <MatchList matched={matched} /> :
+          <div>
+            <Vets currentVet={currentVet} />
+            <BtnGroup swipe={this.swipe} toggleProfilePage={this.toggleProfilePage} />
+            {viewProfile && <ProfilePage currentVet={currentVet} />}
+          </div>
+          }
+          </div>
       </Layout>
     )
   }

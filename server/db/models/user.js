@@ -12,6 +12,9 @@ const User = db.define('user', {
   imageUrl: {
     type: Sequelize.STRING,
   },
+  description: {
+    type: Sequelize.STRING,
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,

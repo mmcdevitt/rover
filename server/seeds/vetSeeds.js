@@ -10,8 +10,9 @@ const vetSeed = async () => {
       data.push({
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
+        description: faker.lorem.sentence(),
         email: faker.internet.email(),
-        imageUrl: faker.image.people(),
+        imageUrl: 'https://vcahospitals.com/great-lakes/-/media/vca/images/global/5050_980x800_ourveterinarians.ashx',
         password: '123',
         isVet: true
       })
