@@ -1,7 +1,7 @@
 ## Cedrus Code Challenge
 
 ### Notes
-I did not have enought time to store the matches into a database. The appointment feature is responding with a 500 error. 
+I did not have enough time to store the matches into a database. The appointment feature is responding with a 500 error. 
 
 ### Installation
  - Fork and clone repo
