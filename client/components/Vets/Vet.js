@@ -11,6 +11,9 @@ class Vet extends React.Component {
     return (
       <div>
         { vet.firstName }
+        <div>
+          <img src={vet.imageUrl} />
+        </div>
       </div>
     );
   }

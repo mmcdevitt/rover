@@ -7,7 +7,8 @@ class App extends React.Component {
     super()
 
     this.state = {
-      vets: []
+      vets: [],
+      currentVet: {}
     }
   }
 
@@ -16,7 +17,8 @@ class App extends React.Component {
       .get('/api/vets')
       .then(res => {
         this.setState({
-          vets: res.data
+          vets: res.data,
+          currentVet: res.data[0]
         })
       })
       .catch(err => {
@@ -24,14 +26,31 @@ class App extends React.Component {
       })
   }
 
-  render () {
-    const { vets } = this.state;
+  next = () => {
+    // this.setState({
+    //   currentVet
+    // })
+  }
 
-    console.log(this.state)
+  reject = () => {
+
+  }
+
+  accept = () => {
+
+  }
+
+  render () {
+    const { vets, currentVet } = this.state;
+
     return (
       <div className="rover">
         Rover
-        <Vets vets={vets} />
+        <Vets currentVet={currentVet} />
+        <div className="btn-group">
+          <button onClick={this.reject}>Reject</button>
+          <button onClick={this.accept}>Accept</button>
+        </div>
       </div>
     )
   }

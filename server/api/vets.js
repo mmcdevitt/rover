@@ -14,28 +14,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const restaurant = await Restaurant.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       include: [
-//         {
-//           model: Category,
-//           include: [{model: MenuItem, include: [{model: ChoiceCategory}]}]
-//         },
-//         {
-//           model: MenuItem,
-//           include: [{model: ChoiceCategory}]
-//         }
-//       ]
-//     })
-//     res.json(restaurant)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.get('/:id', async (req, res, next) => {
+  try {
+    const vet = await User.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.json(vet)
+  } catch (err) {
+    next(err)
+  }
+})
 
 // router.get('/slug/:slug', async (req, res, next) => {
 //   try {

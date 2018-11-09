@@ -2,16 +2,16 @@ import React from "react";
 import Vet from './Vet'
 
 class Vets extends React.Component {
-  renderVets () {
-    return this.props.vets.map(vet => {
-      return <Vet key={vet.id} vet={vet} />
-    })
+  renderVet () {
+    const { currentVet } = this.props;
+
+    return <Vet vet={currentVet} />
   }
 
   render() {
     return (
       <div>
-        { this.renderVets() }
+        { this.renderVet() }
       </div>
     );
   }
