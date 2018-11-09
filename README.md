@@ -11,5 +11,7 @@ I did not have enought time to store the matches into a database. The appointmen
  - `npm run start-dev`
 
 ### Libraries Used
+ - Fullstack Academy Boilerplate Template
  - React (Front-end)
  - Axios (API calls)
+ - Faker Module (Fake data)
