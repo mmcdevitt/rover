@@ -11,6 +11,7 @@ const vetSeed = async () => {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
+        imageUrl: faker.image.imageUrl(),
         password: '123',
         isVet: true
       })

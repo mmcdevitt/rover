@@ -9,6 +9,9 @@ const User = db.define('user', {
   lastName: {
     type: Sequelize.STRING,
   },
+  imageUrl: {
+    type: Sequelize.STRING,
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
