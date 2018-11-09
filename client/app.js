@@ -18,6 +18,7 @@ class App extends React.Component {
       rejected: [],
       viewProfile: false,
       viewMatches: false,
+      error: null
     }
   }
 
@@ -31,7 +32,9 @@ class App extends React.Component {
         })
       })
       .catch(err => {
-        console.log(err)
+        this.setState({
+          error: err
+        })
       })
   }
 
@@ -77,15 +80,17 @@ class App extends React.Component {
       <Layout>
         <Header toggleViewMatches={this.toggleViewMatches} />
         <div className="content">
-        { viewMatches ? 
-          <MatchList matched={matched} /> :
-          <div>
-            <Vets currentVet={currentVet} />
-            <BtnGroup swipe={this.swipe} toggleProfilePage={this.toggleProfilePage} />
-            {viewProfile && <ProfilePage currentVet={currentVet} />}
-          </div>
+          { 
+            viewMatches ? 
+            <MatchList matched={matched} /> :
+            <div className="current-vet">
+              <h1>Current Vet</h1>
+              <Vets currentVet={currentVet} />
+              <BtnGroup swipe={this.swipe} toggleProfilePage={this.toggleProfilePage} />
+              {viewProfile && <ProfilePage currentVet={currentVet} />}
+            </div>
           }
-          </div>
+        </div>
       </Layout>
     )
   }

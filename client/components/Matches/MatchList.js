@@ -1,14 +1,35 @@
 import React from 'react';
+import axios from 'axios'
 
 export default class MatchList extends React.Component {
+  setAppointment (matchId) {
+    axios
+      .post('/api/appointments', {
+        userId: 1,
+        matchId
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   renderMatches () {
-    return this.props.matched.map(match => {
-      return (
-        <div key={match.id}>
-          {match.firstName}
-        </div>
-      )
-    })
+    const { matched } = this.props;
+
+    if (matched.length === 0) {
+      return <div>You have no matches</div>
+    } else {
+      return matched.map(match => {
+        return (
+          <div key={match.id}>
+            {match.firstName} {match.lastName} <button onClick={() => this.setAppointment(match.id)}>Set Appointment</button>
+          </div>
+        )
+      })
+    }
   }
 
   render () {
