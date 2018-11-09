@@ -66,6 +66,8 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex')
 }
 
+
+
 /**
  * hooks
  */

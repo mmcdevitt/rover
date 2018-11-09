@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Vets from './components/Vets/Vets'
+import ProfilePage from './components/Vets/Profile'
+import BtnGroup from './components/UI/BtnGroup';
+import Layout from './components/Layout/Layout';
 
 class App extends React.Component {
   constructor () {
@@ -8,7 +11,10 @@ class App extends React.Component {
 
     this.state = {
       vets: [],
-      currentVet: {}
+      currentVet: {},
+      accepted: [],
+      rejected: [],
+      viewProfile: false
     }
   }
 
@@ -26,32 +32,43 @@ class App extends React.Component {
       })
   }
 
-  next = () => {
-    // this.setState({
-    //   currentVet
-    // })
+  swipe = (action) => {
+    const vets = [...this.state.vets];
+    vets.shift();
+
+    this.setState({
+      vets: this.state.vets.filter(vet => {
+        return vet.id !== this.state.currentVet.id
+      }),
+      currentVet: vets[0],
+    })
+
+    if (action === 'accept') {
+      this.setState({accepted: [...this.state.accepted, this.state.currentVet]})
+    } else if (action === 'reject') {
+      this.setState({rejected: [...this.state.rejected, this.state.currentVet]})
+    }
   }
 
-  reject = () => {
-
-  }
-
-  accept = () => {
-
+  toggleProfilePage = () => {
+    this.setState({
+      viewProfile: !this.state.viewProfile
+    })
   }
 
   render () {
-    const { vets, currentVet } = this.state;
+    const { 
+      vets, 
+      currentVet, 
+      viewProfile 
+    } = this.state;
 
     return (
-      <div className="rover">
-        Rover
+      <Layout>
         <Vets currentVet={currentVet} />
-        <div className="btn-group">
-          <button onClick={this.reject}>Reject</button>
-          <button onClick={this.accept}>Accept</button>
-        </div>
-      </div>
+        <BtnGroup swipe={this.swipe} toggleProfilePage={this.toggleProfilePage} />
+        {viewProfile && <ProfilePage currentVet={currentVet} />}
+      </Layout>
     )
   }
 }
